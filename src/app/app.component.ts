@@ -14,6 +14,11 @@ export class AppComponent {
 
   inputValue = '';
 
+  title10thvideo = 'Initial'
+  title10thvideo2 = 'Initial'
+
+  backgroundToggle = false
+
   img =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png';
 
@@ -37,5 +42,9 @@ export class AppComponent {
 
   onBlur(str: string) {
     this.inputValue = str
+  }
+
+  onInput2(event: any){
+    this.title10thvideo = event.target.value
   }
 }
