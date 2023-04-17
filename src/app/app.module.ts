@@ -11,16 +11,13 @@ import { Post4Component } from './post4/post4.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent, 
-    Post2Component, 
+    PostComponent,
+    Post2Component,
     Post3Component,
-    Post4Component
+    Post4Component,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

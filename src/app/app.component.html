@@ -8,6 +8,42 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <h1>Hello Angular World</h1>
+<p>{{ title }}</p>
+<p><strong>{{ number-2 }}</strong></p>
+<p><strong>{{ arr }}</strong></p>
+<p><strong>{{ obj.b }}</strong></p>
+<p><strong>{{ obj.b.c }}</strong></p>
+<p><strong>{{ 2 + 3 }}</strong></p>
+<p><strong>{{ 'Hello' + ' World' }}</strong></p>
+
+<img src='{{ img }}' alt="" width="200px">
+<img [src]='img' alt="" width="200px"><!--[] - односторонний binding- связываем html и ts - 
+    более предпочтительна такая запись - 
+    более оптимизирован такой подход -->
+<!-- event binding - тот же односторонний, нго наоборот из html в ts-->
+
+<hr>
+
+<button (click) = 'onClick()'>Click me!</button>
+
+<hr>
+
+<p><strong>{{ 'Event input' }}</strong></p>
+<input type="text" (input)="onInput($event)">
+
+<hr>
+
+<p><strong>Event keyup after click on enter or click outside the input field</strong></p>
+<input 
+    type="text" 
+    (keyup.enter)="onInput($event)" 
+    (blur)="onBlur(myInput.value)"
+    #myInput
+>
+
+<p><strong>{{ inputValue }}</strong></p>
+
+<hr>
 <app-post></app-post>
 <!-- <app-post></app-post> -->
 <hr>
