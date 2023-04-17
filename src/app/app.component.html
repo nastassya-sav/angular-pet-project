@@ -24,7 +24,7 @@
 
 <hr>
 
-<button (click) = 'onClick()'>Click me!</button>
+<button (click)='onClick()'>Click me!</button>
 
 <hr>
 
@@ -34,12 +34,7 @@
 <hr>
 
 <p><strong>Event keyup after click on enter or click outside the input field</strong></p>
-<input 
-    type="text" 
-    (keyup.enter)="onInput($event)" 
-    (blur)="onBlur(myInput.value)"
-    #myInput
->
+<input type="text" (keyup.enter)="onInput($event)" (blur)="onBlur(myInput.value)" #myInput>
 <!--мы можем что-то менять в html или ts и изменения будут 
     моментально отображаться и там, и там. До этого разбирали одностороннее 
     связывание, а сейчас разбираем как это работает в совокупности - 2 way data binding-->
@@ -54,7 +49,7 @@
 <h2>----------------------------------10th video----------------------------------</h2>
 <!--Первый тип байндинга-хотим забайндить значсение value - [value]-->
 <!--Реализовали в одну сторону - хотим и в обратную - (событие)="метод"-->
-<input type="text" [value]="title10thvideo" (input)="onInput2($event)"> 
+<input type="text" [value]="title10thvideo" (input)="onInput2($event)">
 <p><strong>{{ title10thvideo }}</strong></p>
 
 
@@ -62,7 +57,7 @@
     Двойные скобки - потому что двойное связывание.
 Более удобная модель связывания. 
 (Чтобы работало нужно импортировать FormsModule в app.module)-->
-<input type="text" [(ngModel)]="title10thvideo2"> 
+<input type="text" [(ngModel)]="title10thvideo2">
 <p><strong>{{ title10thvideo2 }}</strong></p>
 
 <h2>----------------------------------11th video----------------------------------</h2>
@@ -84,3 +79,116 @@
 }">
 
 </div>
+
+<h2>----------------------------------12th video----------------------------------</h2>
+<!--Рассмотрим директиву, позволяющую добавлять динамические классы.
+В качестве ключа объекта пишем название класса.
+Значение ключа - условие, по котрому нужно добавить или недобавлять данный класс-->
+
+<button (click)="backgroundToggle2 = !backgroundToggle2">Toggle</button>
+
+<p [ngClass]="{
+    red: backgroundToggle2,
+    blue: !backgroundToggle2
+}">Lorem Lorem Lorem Lorem Lorem</p>
+
+<!--2 способ. Просто иной синтаксис(не внутри объекта). 
+    Через точку указываем нужный класс.
+Если много условий и классов, то лучше использовать ngClass.
+Если 1-2 класса - class.нашкласс-->
+<p [class.blue]="!backgroundToggle2" [class.red]="backgroundToggle2">Gaf Gaf Gaf Gaf Gaf</p>
+
+<h2>----------------------------------13th video----------------------------------</h2>
+<!--При записи class="red" - класс статический.-->
+<!--Структурные директивы. Angular разделяет различные типы директив и те директивы, 
+    которые позволяют изменять струтуру html-шаблона - структурные I(ставим звездочку *)-->
+<!--В Ангуляр все строго. 
+Байндим в одну сторону - []
+В обратную - ()
+Хотим изменять шаблон - *-->
+<button (click)="toggle = !toggle">Click to change toggle value</button>
+
+<!--В условии могут быть тернарные операции, простые сравнения и др.-->
+<!--Элемент не скрывается из шаблона, а действительно удаляется-->
+<p *ngIf="toggle" class="red">File tabs have been enhanced to make split views effortless, with support </p>
+<p *ngIf="!toggle" class="blue">The Default and Adaptive themes have been refreshed with new tab styles and inactive
+    pane dimming</p>
+
+<hr>
+<!--Более оптимизированно писать в else-->
+<p *ngIf="toggle; else bluePar" class="red">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa </p>
+<ng-template #bluePar>
+    <!--Внутри тот блок, который нужно показать в противном случае-->
+    <p class="blue">
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    </p>
+</ng-template>
+
+<h2>----------------------------------14th video----------------------------------</h2>
+<!--ngSwitch.
+Передаем переменную, по которой хотим свитчить-->
+<button (click)="toggle = 111">Set 111 to see Default</button>
+
+<div [ngSwitch]="toggle">
+    <p *ngSwitchCase="true" class="red">mmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+    <p *ngSwitchCase="false" class="blue">ooooooooooooooooooooooooooooo</p>
+    <p *ngSwitchDefault>Default value</p>
+</div>
+
+<h2>----------------------------------15th video----------------------------------</h2>
+
+<!--Директива для работы с циклами и массивами - ngFor.
+Создаем объект, который будет присутствовать на каждой итерации. 
+Далее из какого массива хотим делать итерацию.
+По итогу получили динамический список, который содержит все значения итерируемого массива-->
+<ul>
+    <li *ngFor="let number of newArr">
+        {{number}}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let number of newArr; let idx = index"> <!--index - ключевое слово Ангуляр-->
+        {{idx+1}} <strong>{{number}}</strong>
+    </li>
+</ul>
+
+<!--работа со вложенностью-->
+<ul style="list-style:none">
+    <li *ngFor="let post of objs">
+        <p>{{post.title}} <b>{{post.author}}</b></p>
+        <ul>
+            <li *ngFor="let comment of post.comments">
+                <div>
+                    <small>{{comment.name}}</small>
+                    <p>{{comment.text}}</p>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h2>----------------------------------16th video----------------------------------</h2>
+<!--pipes-->
+<!--Pipes (пайпы) - маленькие трансформеры, которые мы применяем в основном
+     внутри шаблона, которые служат для трансформации отображения каких-либо данных -->
+
+<p>
+    {{now}}
+</p>
+<!--выше - неудобный формат даты, нужно трансформировать-->
+
+<!--пишем вертикальную черту и после название пайпа-->
+<p>
+    {{now | date}}
+</p>
+
+<!--можем указывать параметры-->
+<p>
+    {{now | date: 'small'}}
+</p>
+
+ <!--можем чейнить - выстраивать в очередь пайпы-->
+<p>
+    {{now | date: 'long' | uppercase}}
+</p>

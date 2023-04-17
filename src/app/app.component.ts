@@ -14,10 +14,30 @@ export class AppComponent {
 
   inputValue = '';
 
-  title10thvideo = 'Initial'
-  title10thvideo2 = 'Initial'
+  title10thvideo = 'Initial';
+  title10thvideo2 = 'Initial';
 
-  backgroundToggle = false
+  backgroundToggle = false;
+  backgroundToggle2 = false;
+
+  toggle: any = false; //тип any, чтобы мы могли задавать любой тип
+
+  newArr = [1, 1, 2, 3, 5, 8, 13, 21];
+
+  objs = [
+    {title: "Post 1", author: "Mary", comments: [
+      {name: 'Max', text: 'lorem 1'},
+      {name: 'Max', text: 'lorem 2'},
+      {name: 'Max', text: 'lorem 3'}
+    ]},
+    {title: "Post 2", author: "Mary2", comments: [
+      {name: 'Max2', text: 'lorem 1'},
+      {name: 'Max2', text: 'lorem 2'},
+      {name: 'Max2', text: 'lorem 3'}
+    ]}
+  ]
+
+  now: Date = new Date()//вызываем конструтор new Date и указываем тип Date, т.к. это ts
 
   img =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png';
@@ -41,10 +61,10 @@ export class AppComponent {
   }
 
   onBlur(str: string) {
-    this.inputValue = str
+    this.inputValue = str;
   }
 
-  onInput2(event: any){
-    this.title10thvideo = event.target.value
+  onInput2(event: any) {
+    this.title10thvideo = event.target.value;
   }
 }
