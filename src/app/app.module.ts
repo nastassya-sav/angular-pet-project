@@ -8,6 +8,8 @@ import { Post2Component } from './post2/post2.component';
 import { Post3Component } from './post3/post3.component';
 import { Post4Component } from './post4/post4.component';
 import { FormsModule } from '@angular/forms';
+import { PostFormComponent } from './post-form/post-form.component';
+import { JustPostComponent } from './just-post/just-post.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { FormsModule } from '@angular/forms';
     Post2Component,
     Post3Component,
     Post4Component,
+    PostFormComponent,
+    JustPostComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
