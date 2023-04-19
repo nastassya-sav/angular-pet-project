@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+export interface Post {
+  title: string;
+  text: string;
+  id?: number; //необязательный параметр
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,22 +31,35 @@ export class AppComponent {
   newArr = [1, 1, 2, 3, 5, 8, 13, 21];
 
   objs = [
-    {title: "Post 1", author: "Mary", comments: [
-      {name: 'Max', text: 'lorem 1'},
-      {name: 'Max', text: 'lorem 2'},
-      {name: 'Max', text: 'lorem 3'}
-    ]},
-    {title: "Post 2", author: "Mary2", comments: [
-      {name: 'Max2', text: 'lorem 1'},
-      {name: 'Max2', text: 'lorem 2'},
-      {name: 'Max2', text: 'lorem 3'}
-    ]}
-  ]
+    {
+      title: 'Post 1',
+      author: 'Mary',
+      comments: [
+        { name: 'Max', text: 'lorem 1' },
+        { name: 'Max', text: 'lorem 2' },
+        { name: 'Max', text: 'lorem 3' },
+      ],
+    },
+    {
+      title: 'Post 2',
+      author: 'Mary2',
+      comments: [
+        { name: 'Max2', text: 'lorem 1' },
+        { name: 'Max2', text: 'lorem 2' },
+        { name: 'Max2', text: 'lorem 3' },
+      ],
+    },
+  ];
 
-  now: Date = new Date()//вызываем конструтор new Date и указываем тип Date, т.к. это ts
+  now: Date = new Date(); //вызываем конструтор new Date и указываем тип Date, т.к. это ts
 
   img =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png';
+
+  posts: Post[] = [
+    { title: 'One title', text: 'i learn components', id: 1 },
+    { title: 'Two title', text: 'i learn components too', id: 2 },
+  ];
 
   constructor() {
     setTimeout(() => {
@@ -66,5 +85,10 @@ export class AppComponent {
 
   onInput2(event: any) {
     this.title10thvideo = event.target.value;
+  }
+
+  removePost(id:number){
+    console.log('id to remove: ', id)
+    this.posts = this.posts.filter(p => p.id !== id)
   }
 }

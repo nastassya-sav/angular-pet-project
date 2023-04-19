@@ -189,7 +189,7 @@
     {{now | date: 'small'}}
 </p>
 
- <!--можем чейнить - выстраивать в очередь пайпы-->
+<!--можем чейнить - выстраивать в очередь пайпы-->
 <p>
     {{now | date: 'long' | uppercase}}
 </p>
@@ -202,9 +202,33 @@
     <h3>Angular Components</h3>
 </div>
 
-<app-post-form></app-post-form>
+<app-post-form></app-post-form> <!--без кнопки Focus Title - это 4е видео-->
 <hr>
 <app-just-post></app-just-post>
 <app-just-post></app-just-post>
 
 <h2>----------------------------------2nd video----------------------------------</h2>
+<app-just-post *ngFor='let p of posts' [myPost]='p'></app-just-post>
+
+<h2>----------------------------------4th video----------------------------------</h2>
+
+<app-post-form></app-post-form>
+
+<h2>----------------------------------5th video----------------------------------</h2>
+<h2>----------------------------------6th video----------------------------------</h2>
+<app-just-post *ngFor='let p of posts' [myPost]='p' (onRemove)="removePost($event)">
+    <div #info>
+        <small *ngIf="p.text.length > 10; else short">Пост длинный</small><!--референция (ссылка) short-->
+        <ng-template #short>
+            <small>Пост короткий</small>
+        </ng-template>
+    </div>
+</app-just-post>
+
+<h2>----------------------------------7th video----------------------------------</h2>
+<!--lifecycle hooks - концепт, который показывает, на каком этапе сейчас находится компонент-->
+<!--у всех лайфсайкл хуков есть префикс ng-->
+<!--метод ngOnInit() -происходит инициализация компоненты, одним из первых вызывается
+    -->
+
+<h3>Hiii</h3>

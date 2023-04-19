@@ -1,4 +1,8 @@
 <div class="card">
-    <h3>Post title</h3>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum, magni?</p>
+    <h3>{{post.title}}</h3> <!--благодаря интерфейсам такой мощный автокамплит-->
+    <p>{{post.text}}</p>
+
+    <button class="btn" (click)="removePost()">&times;</button>
+    <!--указываем место, в которое нам нужно рендорить контент, поступающий извне-->
+    <ng-content></ng-content>
 </div>
